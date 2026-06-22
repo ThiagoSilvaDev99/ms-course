@@ -16,7 +16,7 @@ docker run -p 5432:5432 --name hr-user-pg12 --network hr-net -e POSTGRES_PASSWOR
 
 ## hr-config-server
 ```
-FROM openjdk:11
+FROM eclipse-temurin:11-jre
 VOLUME /tmp
 EXPOSE 8888
 ADD ./target/hr-config-server-0.0.1-SNAPSHOT.jar hr-config-server.jar
@@ -32,7 +32,7 @@ docker run -p 8888:8888 --name hr-config-server --network hr-net -e GITHUB_USER=
 
 ## hr-eureka-server
 ```
-FROM openjdk:11
+FROM eclipse-temurin:11-jre
 VOLUME /tmp
 EXPOSE 8761
 ADD ./target/hr-eureka-server-0.0.1-SNAPSHOT.jar hr-eureka-server.jar
@@ -48,7 +48,7 @@ docker run -p 8761:8761 --name hr-eureka-server --network hr-net hr-eureka-serve
 
 ## hr-worker
 ```
-FROM openjdk:11
+FROM eclipse-temurin:11-jre
 VOLUME /tmp
 ADD ./target/hr-worker-0.0.1-SNAPSHOT.jar hr-worker.jar
 ENTRYPOINT ["java","-jar","/hr-worker.jar"]
@@ -63,7 +63,7 @@ docker run -P --network hr-net hr-worker:v1
 
 ## hr-user
 ```
-FROM openjdk:11
+FROM eclipse-temurin:11-jre
 VOLUME /tmp
 ADD ./target/hr-user-0.0.1-SNAPSHOT.jar hr-user.jar
 ENTRYPOINT ["java","-jar","/hr-user.jar"]
@@ -78,7 +78,7 @@ docker run -P --network hr-net hr-user:v1
 
 ## hr-payroll
 ```
-FROM openjdk:11
+FROM eclipse-temurin:11-jre
 VOLUME /tmp
 ADD ./target/hr-payroll-0.0.1-SNAPSHOT.jar hr-payroll.jar
 ENTRYPOINT ["java","-jar","/hr-payroll.jar"]
@@ -93,7 +93,7 @@ docker run -P --network hr-net hr-payroll:v1
 
 ## hr-oauth
 ```
-FROM openjdk:11
+FROM eclipse-temurin:11-jre
 VOLUME /tmp
 ADD ./target/hr-oauth-0.0.1-SNAPSHOT.jar hr-oauth.jar
 ENTRYPOINT ["java","-jar","/hr-oauth.jar"]
@@ -108,7 +108,7 @@ docker run -P --network hr-net hr-oauth:v1
 
 ## hr-api-gateway-zuul
 ```
-FROM openjdk:11
+FROM eclipse-temurin:11-jre
 VOLUME /tmp
 EXPOSE 8765
 ADD ./target/hr-api-gateway-zuul-0.0.1-SNAPSHOT.jar hr-api-gateway-zuul.jar
